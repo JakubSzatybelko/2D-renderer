@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { masterObject, animate } from '../renderEngine';
+import { animate } from '../renderEngine';
 import { createInstanceMonitor } from '../renderEngine/instanceMonitor';
 
 const canvas = ref<HTMLCanvasElement | null>(null)

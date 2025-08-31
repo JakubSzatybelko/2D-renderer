@@ -1,16 +1,75 @@
-<script setup lang="ts">
+<script setup>
+import { onMounted } from 'vue'
+import { generateMusic } from './sounds/generateMusic';
+
+const startPlaying = async () => {
+  generateMusic();
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
+<div>
+  <div id="fps"></div>
+<div id="info">
+  <button @click="startPlaying">
+    play sound
+  </button>
+</div>
+<div id="bg_glow"></div>
+<div id="overlay"></div>
+<canvas id="canvas"></canvas>
+</div>
 </template>
 
-<style scoped>
+<style>
+html, body{
+  overflow: hidden;
+  background: #000;
+  padding: 0px;
+  margin: 0px;
+}
+
+#canvas{
+  cursor: crosshair;
+  z-index: 2;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+#overlay{
+  background: radial-gradient(ellipse at center, rgba(0,0,0,.0) 10%, rgba(0,0,0,.8) 80%, rgba(0,0,0,1) 90%, rgba(0,0,0,1) 100%);
+  z-index: 3;
+  position: absolute;
+  top:0;left:0;
+  height: 100%;
+  width: 100%;
+}
+
+#bg_glow{
+  z-index: 1;
+  position: absolute;
+  top:0;left:0;
+  height: 100%;
+  width: 100%;
+}
+
+#info{
+  z-index: 4;
+  position: absolute;
+  color: #fff;
+  top: 0px;
+  left: 0px;
+  background: rgba(60,60,60,.6);
+  padding: 5px;
+}
+#overlay:hover{
+  cursor: pointer;
+}
+
+#fps{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 5;
+}
 </style>
